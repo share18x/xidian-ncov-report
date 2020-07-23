@@ -13,8 +13,8 @@ if os.path.exists("NOSUBMIT"):
 data = {}
 
 currentdir = os.getcwd()
-print(currentdir + "\\data.json")
-with open(currentdir + "\\data.json") as fd:
+#print(currentdir + "\\data.json")
+with open(currentdir + "\\data.json","r") as fd:
     data=json.load(fd)
     
 conn = requests.Session()
