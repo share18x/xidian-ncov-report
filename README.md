@@ -34,4 +34,4 @@
 * 反馈代码
 * 学习使用`github`
 # 写在最后
-我其实只是个不会写代码的萌新，看了[大佬的代码](https://github.com/Apache553/xidian-ncov-report)，再学习了一点点`python`，才把教程写出来了。
+我其实只是个不会写代码的萌新，参考[大佬的代码](https://github.com/Apache553/xidian-ncov-report)，再学习了一点点`python`，才把教程写出来了。
