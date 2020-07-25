@@ -1,7 +1,6 @@
 # WINDOWS  
 1.安装`python3.8*`  
 `pip install requests`  
-`pip install time`  
 2.执行`configure.py`  
 定位输入  
 南校区：  
@@ -21,7 +20,8 @@
 
 # LINUX  
 虚拟机炸了，写大概思路吧  
-1.安装`python3.8*`  
+1.安装`python3.8*` 
+`pip install requests`  
 2.执行`configure.py`  
 定位输入  
 南校区：  
