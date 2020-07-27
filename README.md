@@ -28,7 +28,8 @@
 `{"type":"complete","info":"SUCCESS","status":1,"VDa":"jsonp_980898_","position":{"Q":34.122061903212,"R":108.83052978515701,"lng":108.83053,"lat":34.122062},"message":"Get ipLocation success.Get address success.","location_type":"ip","accuracy":null,"isConverted":true,"addressComponent":{"citycode":"029","adcode":"610113","businessAreas":[],"neighborhoodType":"","neighborhood":"","building":"","buildingType":"","street":"雷甘路","streetNumber":"264号","country":"中国","province":"陕西省","city":"西安市","district":"长安区","township":"兴隆街道"},"formattedAddress":"陕西省西安市长安区兴隆街道西安电子科技大学长安校区","roads":[],"crosses":[],"pois":[]}`  
 北校区：  
 `{"type":"complete","info":"SUCCESS","status":1,"VDa":"jsonp_980898_","position":{"Q":34.23254,"R":108.91514000000001,"lng":108.91514,"lat":34.23254},"message":"Get ipLocation success.Get address success.","location_type":"ip","accuracy":null,"isConverted":true,"addressComponent":{"citycode":"029","adcode":"610113","businessAreas":[],"neighborhoodType":"","neighborhood":"","building":"","buildingType":"","street":"白沙路","streetNumber":"付8号","country":"中国","province":"陕西省","city":"西安市","district":"雁塔区","township":"电子城街道"},"formattedAddress":"陕西省西安市雁塔区电子城街道西安电子科技大学北校区","roads":[],"crosses":[],"pois":[]}`  
-3.设置`crontab`  
+3.设置`crontab` 
+`30 3 * * * /root/xidian-ncov-report-master/submit.py  >> /root/xidian-ncov-report-master/output.log 2>&1 &`
 
 # TODO
 * 优化获取定位的代码  
