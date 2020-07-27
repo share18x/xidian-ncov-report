@@ -19,7 +19,6 @@
 起始于：填写脚本的路径  
 
 # LINUX  
-虚拟机炸了，写大概思路吧  
 1.安装`python3.8*` 
 `pip install requests`  
 2.执行`configure.py`  
