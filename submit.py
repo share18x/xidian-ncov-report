@@ -7,14 +7,24 @@ import re
 import sys
 import os
 
+def print_output_log():
+    print("正在记录日志中......\n")
+    output_str = "最终输出：\n"
+    output_str += str(predef) + "\n"
+    output_str += result.text + "\n"
+    output_str += time.strftime("%Y-%m-%d %H:%M:%S\n", time.localtime())
+    # print(output_str)
+    with open(currentdir + "/output.log", "a") as fd:
+        fd.write(output_str)
+
 if os.path.exists("NOSUBMIT"):
     exit()
 
 data = {}
 
-currentdir = os.getcwd()
-#print(currentdir + "\\data.json")
-with open(currentdir + "\\data.json","r") as fd:
+currentdir = os.path.dirname(os.path.abspath(__file__))
+#print(currentdir + "/data.json")
+with open(currentdir + "/data.json") as fd:
     data=json.load(fd)
     
 conn = requests.Session()
@@ -34,8 +44,8 @@ if result.status_code != 200:
 # if os.path.exists("last_get.html"):
 #     os.rename("last_get.html","last_get.html.1")
 
-with open("last_get.html","w") as fd:
-    fd.write(result.text)
+# with open("last_get.html","w") as fd:
+#     fd.write(result.text)
 
 # TODO: diff those two files to determine whether submission form has been updated, then delay the submission when necessary
 # print("正则表达式调试：\n%r" % re.search('var def = ({.*});',result.text).group(1))
@@ -54,7 +64,7 @@ del data['_u']
 del data['_p']
 predef.update(data)
 
-print("最终输出：\n" + str(predef))
+# print("最终输出：\n" + str(predef))
 
 #最终测试
 # while True:
@@ -65,6 +75,7 @@ print("最终输出：\n" + str(predef))
 #         exit()
 
 result = conn.post('https://xxcapp.xidian.edu.cn/ncov/wap/default/save',data=predef)
-print(result.text)
+# print(result.text)
+print_output_log()
 #停顿10s
 time.sleep(10)
