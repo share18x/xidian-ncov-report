@@ -7,6 +7,55 @@ import re
 import sys
 import os
 
+
+def time_judge():
+    t = int(time.strftime("%H", time.localtime()))
+    if t < 8:
+        return "凌晨\n"
+    elif t < 12:
+        return "早上\n"
+    elif t < 14:
+        return "中午\n"
+    elif t < 18:
+        return "下午\n"
+    elif t < 24:
+        return "晚上\n"
+    else:
+        print("时间错误")
+        exit(1)
+
+
+def notice_func(input):
+    input = json.loads(input.text)
+    text = time.strftime("时间：\n%Y-%m-%d %X\n", time.localtime()) + input['m']
+
+    if not os.path.exists(currentdir + "/notice.json"):
+        exit(0)
+    with open(currentdir + "/notice.json", "r") as fd:
+        data1 = json.load(fd)
+
+    if data1['server_chan'] == 1:
+        url = "https://sc.ftqq.com/" +\
+             data1['key_server'] + \
+                 ".send"
+        data = {'text':'疫情通填报报告：' + time_judge(), 'desp':text}
+        output = conn.post(url, data = data)
+
+
+    if data1['telegram_bot'] == 1:
+        url = "https://api.telegram.org/bot" + \
+            data1['key_bot'] + \
+                "/sendMessage"
+        data = {'chat_id':data1['chat_id'], 'text':"疫情通填报报告：\n" + time_judge() + text}
+        # 读取代理设置
+        if  os.path.exists(currentdir + "/proxies.json"):
+            with open(currentdir + "/proxies.json", "r") as fd:
+                proxies = json.load(fd)        
+            output1 = conn.post(url, data = data, proxies = proxies)
+        else:
+            output1 = conn.post(url, data = data)
+
+
 def print_output_log():
     print("正在记录日志中......\n")
     output_str = "最终输出：\n"
@@ -41,11 +90,6 @@ if result.status_code != 200:
     print('获取页面大失败')
     exit()
 
-# if os.path.exists("last_get.html"):
-#     os.rename("last_get.html","last_get.html.1")
-
-# with open("last_get.html","w") as fd:
-#     fd.write(result.text)
 
 # TODO: diff those two files to determine whether submission form has been updated, then delay the submission when necessary
 # print("正则表达式调试：\n%r" % re.search('var def = ({.*});',result.text).group(1))
@@ -62,20 +106,12 @@ except:
     pass
 del data['_u']
 del data['_p']
+
 predef.update(data)
 
-# print("最终输出：\n" + str(predef))
-
-#最终测试
-# while True:
-#     select = input("真的要提交吗？\n请输入YES\\NO\n")
-#     if select == "YES":
-#         break
-#     elif select == "NO":
-#         exit()
-
 result = conn.post('https://xxcapp.xidian.edu.cn/ncov/wap/default/save',data=predef)
-# print(result.text)
+
+
 print_output_log()
-#停顿10s
+notice_func(result)
 time.sleep(10)
