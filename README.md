@@ -18,11 +18,7 @@
 1.安装`python3.8*`  
 `pip install  requests`   
 `pip install -U requests[socks]`  
-2.执行`configure.py`  
-3.设置`crontab`  
-
-`30 0 * * * /root/xidian-ncov-report-master/submit.py  >> /dev/null 2>&1 &`  
-
+2.赋予权限并执行`start.sh`  
 
 ## 功能  
 - [x] 隐藏密码输入  
