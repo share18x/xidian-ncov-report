@@ -1,6 +1,5 @@
 ## WINDOWS  
 1.安装`python3.8*`  
-`pip install  requests`   
 `pip install -U requests[socks]`  
 2.执行`configure.py`  
 3.打开`submit.py`测试  
@@ -15,8 +14,7 @@
 起始于：填写脚本的路径  
 
 ## LINUX   
-1.安装`python3.8*`  
-`pip install  requests`   
+1.安装`python3.8*`    
 `pip install -U requests[socks]`  
 2.赋予权限并执行`start.sh`  
 
